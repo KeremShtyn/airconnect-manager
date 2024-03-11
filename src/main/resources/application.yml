@@ -1,0 +1,47 @@
+chainerist:
+  security:
+    secret-key: th!sChain3r!3tth!sChain3r!3t
+    expiration-millis: 10000
+    issuer: chainerist.com
+
+spring:
+  profiles:
+    active: development
+  # Security configuration
+  security:
+    user:
+      name: user
+      password: user
+  # Database
+  datasource:
+    driver-class-name: org.postgresql.Driver
+    url: jdbc:postgresql://localhost:5438/postgres
+    username: postgres
+    password: postgres
+    hikari:
+      connection-test-query: select 1
+      connection-timeout: 20000
+      maximum-pool-size: 20
+      minimum-idle: 1
+      auto-commit: true
+      pool-name: "blockchain-manager"
+      idle-timeout: 30000
+  # JPA properties
+  jpa:
+    hibernate:
+      ddl-auto: update   # When you launch the application for the first time - switch "none" at "create"
+    show-sql: true
+    database: postgresql
+    database-platform: org.hibernate.dialect.PostgreSQLDialect
+    open-in-view: false
+    generate-ddl: true
+# Logger configuration
+logging:
+  pattern:
+    console: "%d %-5level %logger : %msg%n"
+  level:
+    org.springframework: info
+    org.hibernate: info
+# Server configuration
+server:
+  port: 2727 #set your port
